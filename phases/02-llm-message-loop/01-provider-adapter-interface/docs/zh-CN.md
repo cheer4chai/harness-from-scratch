@@ -1,0 +1,60 @@
+# Provider Adapter 接口
+
+> 构建 coding agent 中的 Provider contract 切片。
+
+**Phase:** LLM 消息循环
+**Lesson:** 1
+**Type:** Build
+**Tech Stack:** TypeScript, Node.js
+**Time:** ~60-90 minutes
+**Prerequisites:** 本 phase 前序 lessons
+
+## Problem
+
+agent 需要具备provider adapter、prompt 组装、流式输出、tool-use block 和用量统计能力。本章单独拆出 **Provider Adapter 接口**，让学习者先理解一个边界，再把它组合进完整 runtime。
+
+## Concept
+
+设计分三部分：
+
+- **Input:** 本章需要的最小数据形状。
+- **Boundary:** 本章引入的 runtime 决策或转换。
+- **Evidence:** 能证明行为有效的 artifact 或 trace。
+
+## Build It
+
+运行 TypeScript demo：
+
+```bash
+pnpm exec tsx phases/02-llm-message-loop/01-provider-adapter-interface/code/demo.ts
+```
+
+demo 刻意保持小而具体。它会为 Provider Adapter 接口 生成一条可检查 trace，并在无法产出预期 artifact 时失败。
+
+phase-level provider module 也包含可选的真实 API adapters。它们不属于默认课程运行：
+
+```bash
+LLM_API_KEY=... LLM_MODEL=... LLM_API_STYLE=chat pnpm demo:llm
+LLM_API_KEY=... LLM_MODEL=... LLM_API_STYLE=responses pnpm demo:llm
+```
+
+## Trace It
+
+预期证据：
+
+```text
+01-provider-adapter-interface: Provider contract
+status: ready
+```
+
+live trace 会输出 `llm-loop-live: 3 messages`、选中的 provider style、模型名、assistant 内容预览，以及 provider 返回时的 usage metadata。
+
+## Ship It
+
+可复用产物是 [outputs/01-provider-adapter-interface.zh-CN.md](../outputs/01-provider-adapter-interface.zh-CN.md)。
+
+## Exercises
+
+1. 为 demo 增加一个输入场景。
+2. 修改 expected artifact，确认 demo 会先失败，再更新实现。
+3. 将本章输出接入 phase-level demo。

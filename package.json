@@ -1,0 +1,19 @@
+{
+  "name": "harness-from-scratch",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "packageManager": "pnpm@10.13.1",
+  "scripts": {
+    "demo": "tsx scripts/run_all_demos.ts",
+    "demo:llm": "tsx phases/02-llm-message-loop/code/live-demo.ts",
+    "test": "tsx --test phases/02-llm-message-loop/code/providers.test.ts",
+    "check": "tsc --noEmit",
+    "audit:course": "tsx scripts/audit_course.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.2",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.2"
+  }
+}
